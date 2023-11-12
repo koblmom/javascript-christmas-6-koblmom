@@ -6,7 +6,7 @@ class DateManager {
 
   constructor(date) {
     this.#validate(date);
-    this.#date(date);
+    this.#date = date;
   }
 
   #validate(date) {

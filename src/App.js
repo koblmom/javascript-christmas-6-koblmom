@@ -7,11 +7,16 @@ class App {
     this.EventController = new EventController();
   }
   async run() {
-    try {
-      await this.EventController.handleDate();
-      await this.EventController.handleMenu();
-    } catch (err) {
-      Console.print(err.message);
+    let inputValid = false;
+
+    while (!inputValid) {
+      try {
+        await this.EventController.handleDate();
+        await this.EventController.handleOrder();
+        inputValid = true;
+      } catch (err) {
+        Console.print(err.message);
+      }
     }
   }
 }

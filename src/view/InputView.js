@@ -10,11 +10,11 @@ const InputView = {
     return Number(inputDate);
   },
 
-  async readMenu() {
-    const inputMenu = await Console.readLineAsync(
+  async readOrder() {
+    const inputOrder = await Console.readLineAsync(
       `${MESSAGE.GET_MENU_INPUT}\n`
     );
-    return Number(inputMenu);
+    return inputOrder;
   },
 };
 export default InputView;

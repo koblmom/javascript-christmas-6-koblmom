@@ -7,14 +7,15 @@ export const MESSAGE = {
 export const DATE = {
   MIN_NUMBER: 1,
   MAX_NUMBER: 31,
-  //MONEY_LIMIT: 100000,
-  //COUNT: 6,
 };
 
 export const ERROR = {
   PREFIX: "[ERROR]",
   DATE_NOT_A_NUMBER: `숫자만 입력해주세요.`,
   EXCEED_DATE_LIMIT: `유효하지 않은 날짜입니다. 다시 입력해 주세요.`,
-  DATE_NOT_A_POSITIVE: "날짜는 정수여야 합니다.",
-  EXCEED_MONEY_LIMIT: `입력 해주신 날짜는 ${DATE.MAX_NUMBER}이하 합니다.`,
+  EXCEED_MONEY_LIMIT: `날짜는 1에서 31 사이의 숫자여야 합니다. 다시 입력해주세요`,
+  ORDER_NOT_A_FORM: `유효하지 않은 주문입니다. 다시 입력해 주세요.`,
+  ORDER_NOT_ON_THE_MENU: `유효하지 않은 주문입니다. 다시 입력해 주세요.`,
+  DUPLICATE_MENU: `유효하지 않은 주문입니다. 다시 입력해 주세요.`,
+  ORDER_QUANTITY: `유효하지 않은 주문입니다. 다시 입력해 주세요.`,
 };
