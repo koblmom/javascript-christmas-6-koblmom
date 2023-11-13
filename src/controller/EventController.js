@@ -1,3 +1,6 @@
+import { MissionUtils } from "@woowacourse/mission-utils";
+const { Console } = MissionUtils;
+
 import InputView from "../view/InputView.js";
 import DateManager from "../domain/DateManager.js";
 import OrderManager from "../domain/OrderManager.js";
@@ -5,11 +8,13 @@ import OutputView from "../view/OutputView.js";
 import EventManager from "../domain/EventManager.js";
 
 class EventController {
+  #dayofWeek;
   #totalOrder;
 
   async handleDate() {
     const dateNumber = await InputView.readDate();
     const date = new DateManager(dateNumber);
+    this.#dayofWeek = date.getDayofWeek();
   }
   async handleOrder() {
     const orders = await InputView.readOrder();

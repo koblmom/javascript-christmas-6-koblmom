@@ -3,10 +3,11 @@ import FixError from "../FixError.js";
 
 class DateManager {
   #date;
+  #month = 12;
 
   constructor(date) {
     this.#validate(date);
-    this.#date = date;
+    this.#date = new Date(`2023-${this.#month}-${date}`);
   }
 
   #validate(date) {
@@ -17,6 +18,12 @@ class DateManager {
     if (!(date >= DATE.MIN_NUMBER && date <= DATE.MAX_NUMBER)) {
       throw new FixError(ERROR.EXCEED_DATE_LIMIT);
     }
+  }
+
+  getDayofWeek(date) {
+    const daysOfWeek = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+    const dayIndex = this.#date.getDay();
+    return daysOfWeek[dayIndex];
   }
 }
 
