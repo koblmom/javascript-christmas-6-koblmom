@@ -1,5 +1,5 @@
-import { ERROR, DATE } from "./Constants.js";
-import FixError from "./FixError.js";
+import { ERROR, DATE } from "../Constants.js";
+import FixError from "../FixError.js";
 
 class DateManager {
   #date;

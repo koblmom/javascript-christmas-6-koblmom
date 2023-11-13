@@ -1,6 +1,6 @@
-import { ERROR, DATE } from "./Constants.js";
-import FixError from "./FixError.js";
-import MENUS from "./Menus.js";
+import { ERROR, DATE } from "../Constants.js";
+import FixError from "../FixError.js";
+import MENUS from "../Menus.js";
 
 class OrderManager {
   #order;
@@ -8,6 +8,10 @@ class OrderManager {
   constructor(order) {
     this.#order = this.parseOrder(order);
     this.#validate(this.#order);
+  }
+
+  getOrders() {
+    return this.#order;
   }
 
   parseOrder(order) {
@@ -47,6 +51,32 @@ class OrderManager {
       }
       seenMenuNames.add(menuName);
     });
+  }
+
+  calculateTotalAmount() {
+    return this.#order.map((orderDetails) => {
+      const menuType = orderDetails.menuType;
+      const quantity = orderDetails.quantity;
+
+      const menu = this.findMenu(menuType);
+      if (menu) {
+        return {
+          totalAmount: menu.price * quantity,
+        };
+      }
+      return 0;
+    });
+  }
+  findMenu(menuType) {
+    for (const category in MENUS) {
+      if (MENUS.hasOwnProperty(category)) {
+        const menu = MENUS[category].find((item) => item.name === menuType);
+        if (menu) {
+          return menu;
+        }
+      }
+    }
+    return null;
   }
 }
 

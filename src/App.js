@@ -1,6 +1,6 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
 const { Console } = MissionUtils;
-import EventController from "./EventController.js";
+import EventController from "./controller/EventController.js";
 
 class App {
   constructor() {
@@ -13,6 +13,7 @@ class App {
       try {
         await this.EventController.handleDate();
         await this.EventController.handleOrder();
+        //await this.EventController.handlePrice();
         inputValid = true;
       } catch (err) {
         Console.print(err.message);
