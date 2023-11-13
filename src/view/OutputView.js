@@ -15,6 +15,10 @@ const OutputView = {
     Console.print("<할인 전 총주문 금액>");
     Console.print(TotalOrder);
   },
+  printFree(freeGift) {
+    Console.print("<증정 메뉴>");
+    Console.print(freeGift);
+  },
 };
 
 export default OutputView;

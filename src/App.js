@@ -13,7 +13,7 @@ class App {
       try {
         await this.EventController.handleDate();
         await this.EventController.handleOrder();
-        //await this.EventController.handlePrice();
+        await this.EventController.handleEvent();
         inputValid = true;
       } catch (err) {
         Console.print(err.message);
