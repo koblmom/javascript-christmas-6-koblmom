@@ -44,7 +44,6 @@ class OrderManager {
 
   #validate(orders) {
     const seenMenuNames = new Set();
-    const amount = this.calculateTotalAmount()[0].totalAmount;
     const totalQuantity = this.totalQuantity();
 
     orders.forEach((orderDetails) => {
@@ -56,10 +55,6 @@ class OrderManager {
       if (!this.isValidMenu(menuName)) {
         throw new PrefixError(ERROR.ORDER_NOT_A_FORM);
       }
-      if (amount < 10000) {
-        throw new PrefixError(ERROR.UNDER_ORDER_LIMIT);
-      }
-
       if (totalQuantity > 20) {
         throw new PrefixError(ERROR.TOTAL_QUANTITY_TOO_HIGH);
       }

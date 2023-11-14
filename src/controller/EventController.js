@@ -55,7 +55,7 @@ class EventController {
       freeGift,
     ];
 
-    OutputView.printDiscountDetails(discounts);
+    OutputView.printDiscountDetails(discounts, this.#totalOrder);
 
     const discountAmount = discounts.reduce(
       (accumulator, currentValue) => accumulator + Number(currentValue),
@@ -63,7 +63,7 @@ class EventController {
     );
     Console.print("");
 
-    OutputView.printDiscountAmount(discountAmount);
+    OutputView.printDiscountAmount(discountAmount, this.#totalOrder);
     Console.print("");
     const DiscountPay = discounts[0] + discounts[1] + discounts[2];
 

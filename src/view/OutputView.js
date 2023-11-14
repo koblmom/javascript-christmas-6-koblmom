@@ -33,8 +33,16 @@ const OutputView = {
     return "없음";
   },
 
-  printDiscountDetails(discounts) {
+  printDiscountDetails(discounts, totalOrder) {
+    const MINIMUMORDER = 10000;
+
     Console.print("<혜택 내역>");
+
+    if (totalOrder <= MINIMUMORDER) {
+      console.log("없음");
+      return;
+    }
+
     const discountLabels = [
       "크리스마스 디데이 할인",
       "평일 할인",
@@ -48,9 +56,17 @@ const OutputView = {
     });
   },
 
-  printDiscountAmount(discountAmount) {
+  printDiscountAmount(discountAmount, totalOrder) {
+    const MINIMUMORDER = 10000;
+
     const formattedDiscountAmount = this.formatNumberWithCommas(discountAmount);
     Console.print("<총혜택 금액>");
+
+    if (totalOrder <= MINIMUMORDER) {
+      console.log("없음");
+      return;
+    }
+
     Console.print(`-${formattedDiscountAmount}원`);
   },
 
