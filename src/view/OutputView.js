@@ -2,6 +2,10 @@ import { MissionUtils } from "@woowacourse/mission-utils";
 const { Console } = MissionUtils;
 
 const OutputView = {
+  formatNumberWithCommas(number) {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  },
+
   printMenu(orders) {
     Console.print("<주문 메뉴>");
     orders.forEach((order) => {
@@ -12,9 +16,10 @@ const OutputView = {
     });
   },
 
-  printTotalOrder(TotalOrder) {
+  printTotalOrder(totalOrder) {
+    const formattedTotalOrder = this.formatNumberWithCommas(totalOrder);
     Console.print("<할인 전 총주문 금액>");
-    Console.print(`${TotalOrder}원`);
+    Console.print(`${formattedTotalOrder}원`);
   },
 
   printFree(freeGift) {
@@ -29,21 +34,30 @@ const OutputView = {
   },
 
   printDiscountDetails(discounts) {
-    Console.print("<혜택 내역>");
-    Console.print(`크리스마스 디데이 할인: -${discounts[0]}원`);
-    Console.print(`평일 할인: -${discounts[1]}원`);
-    Console.print(`특별할인: -${discounts[2]}원`);
-    Console.print(`증정이벤트: -${discounts[3]}원`);
+    const discountLabels = [
+      "크리스마스 디데이 할인",
+      "평일 할인",
+      "특별할인",
+      "증정이벤트",
+    ];
+
+    discounts.forEach((discount, index) => {
+      const formattedDiscount = this.formatNumberWithCommas(discount);
+      Console.print(`${discountLabels[index]}: -${formattedDiscount}원`);
+    });
   },
 
   printDiscountAmount(discountAmount) {
+    const formattedDiscountAmount = this.formatNumberWithCommas(discountAmount);
     Console.print("<총혜택 금액>");
-    Console.print(`-${discountAmount}원`);
+    Console.print(`-${formattedDiscountAmount}원`);
   },
 
-  printPayAmount(DiscountPay, totalOrder) {
+  printPayAmount(discountPay, totalOrder) {
+    const PayMoney = totalOrder - discountPay;
+    const formattedTotalOrder = this.formatNumberWithCommas(PayMoney);
     Console.print("<할인 후 예상 결제 금액>");
-    Console.print(`${totalOrder - DiscountPay}원`);
+    Console.print(`${formattedTotalOrder}원`);
   },
 
   printBadge(discountAmount) {
