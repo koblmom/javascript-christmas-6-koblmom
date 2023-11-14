@@ -39,6 +39,26 @@ const OutputView = {
     Console.print("<할인 후 예상 결제 금액>");
     Console.print(`${totalOrder - DiscountPay}원`);
   },
+
+  printBadge(discountAmount) {
+    Console.print("<12월 이벤트 배지>");
+    let badgeName = "없음";
+
+    switch (true) {
+      case discountAmount > 20000:
+        badgeName = "산타";
+        break;
+      case discountAmount > 10000:
+        badgeName = "트리";
+        break;
+      case discountAmount > 5000:
+        badgeName = "별";
+        break;
+    }
+
+    Console.print(badgeName);
+    return badgeName;
+  },
 };
 
 export default OutputView;

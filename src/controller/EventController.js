@@ -64,6 +64,7 @@ class EventController {
     const DiscountPay = discounts[0] + discounts[1] + discounts[2];
 
     OutputView.printPayAmount(DiscountPay, this.#totalOrder);
+    OutputView.printBadge(discountAmount);
   }
 }
 
