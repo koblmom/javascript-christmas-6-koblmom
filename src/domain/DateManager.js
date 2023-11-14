@@ -1,5 +1,5 @@
 import { ERROR, DATE } from "../Constants.js";
-import FixError from "../FixError.js";
+import PrefixError from "../prefixError.js";
 
 class DateManager {
   #date;
@@ -13,17 +13,17 @@ class DateManager {
   #validate(date) {
     const REGEX_NUMERIC = /^\d+$/;
     if (!REGEX_NUMERIC.test(date)) {
-      throw new FixError(ERROR.DATE_NOT_A_NUMBER);
+      throw new PrefixError(ERROR.DATE_NOT_A_NUMBER);
     }
     if (!(date >= DATE.MIN_NUMBER && date <= DATE.MAX_NUMBER)) {
-      throw new FixError(ERROR.EXCEED_DATE_LIMIT);
+      throw new PrefixError(ERROR.EXCEED_DATE_LIMIT);
     }
   }
 
   getDayofWeek(date) {
     const daysOfWeek = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
     const dayIndex = this.#date.getDay();
-    return daysOfWeek[dayIndex];
+    return dayIndex;
   }
 }
 

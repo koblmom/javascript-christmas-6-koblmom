@@ -1,5 +1,5 @@
 import { ERROR, DATE } from "../Constants.js";
-import FixError from "../FixError.js";
+import PrefixError from "../prefixError.js";
 import MENUS from "../Menus.js";
 
 class OrderManager {
@@ -33,7 +33,7 @@ class OrderManager {
       const menuName = orderDetails.menuType;
 
       if (seenMenuNames.has(menuName)) {
-        throw new FixError(ERROR.DUPLICATE_MENU);
+        throw new PrefixError(ERROR.DUPLICATE_MENU);
       }
 
       let isValidMenu = false;
@@ -47,7 +47,7 @@ class OrderManager {
         }
       }
       if (!isValidMenu) {
-        throw new FixError(ERROR.ORDER_NOT_A_FORM);
+        throw new PrefixError(ERROR.ORDER_NOT_A_FORM);
       }
       seenMenuNames.add(menuName);
     });
@@ -67,6 +67,7 @@ class OrderManager {
       return 0;
     });
   }
+
   findMenu(menuType) {
     for (const category in MENUS) {
       if (MENUS.hasOwnProperty(category)) {
