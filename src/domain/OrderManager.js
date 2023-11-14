@@ -26,6 +26,22 @@ class OrderManager {
     return parsedOrders;
   }
 
+  isInclude(category, menuName) {
+    return MENUS[category].map((item) => item.name).includes(menuName);
+  }
+
+  isValidMenu(menuName) {
+    for (const category in MENUS) {
+      if (MENUS.hasOwnProperty(category)) {
+        if (this.isInclude(category, menuName)) {
+          return true;
+        }
+      }
+    }
+
+    return false;
+  }
+
   #validate(orders) {
     const seenMenuNames = new Set();
 
@@ -36,17 +52,7 @@ class OrderManager {
         throw new PrefixError(ERROR.DUPLICATE_MENU);
       }
 
-      let isValidMenu = false;
-
-      for (const category in MENUS) {
-        if (MENUS.hasOwnProperty(category)) {
-          const menuNames = MENUS[category].map((item) => item.name);
-          if (menuNames.includes(menuName)) {
-            isValidMenu = true;
-          }
-        }
-      }
-      if (!isValidMenu) {
+      if (!this.isValidMenu(menuName)) {
         throw new PrefixError(ERROR.ORDER_NOT_A_FORM);
       }
       seenMenuNames.add(menuName);
