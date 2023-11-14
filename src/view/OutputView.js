@@ -19,7 +19,13 @@ const OutputView = {
 
   printFree(freeGift) {
     Console.print("<증정 메뉴>");
-    if (freeGift === 25000) Console.print("샴페인 1개");
+    if (freeGift === 25000) {
+      Console.print("샴페인 1개");
+      return "샴페인 1개";
+    }
+
+    Console.print("없음");
+    return "없음";
   },
 
   printDiscountDetails(discounts) {

@@ -7,7 +7,7 @@ class EventManager {
       const freeGiftAmount = Number(25000);
       return freeGiftAmount;
     } else {
-      return "없음";
+      return 0;
     }
   }
 
