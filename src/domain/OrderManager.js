@@ -44,10 +44,11 @@ class OrderManager {
 
   #validate(orders) {
     const seenMenuNames = new Set();
+    const amount = this.calculateTotalAmount()[0].totalAmount;
+    const totalQuantity = this.totalQuantity();
 
     orders.forEach((orderDetails) => {
       const menuName = orderDetails.menuType;
-
       if (seenMenuNames.has(menuName)) {
         throw new PrefixError(ERROR.DUPLICATE_MENU);
       }
@@ -55,8 +56,26 @@ class OrderManager {
       if (!this.isValidMenu(menuName)) {
         throw new PrefixError(ERROR.ORDER_NOT_A_FORM);
       }
+      if (amount < 10000) {
+        throw new PrefixError(ERROR.UNDER_ORDER_LIMIT);
+      }
+
+      if (totalQuantity > 20) {
+        throw new PrefixError(ERROR.TOTAL_QUANTITY_TOO_HIGH);
+      }
       seenMenuNames.add(menuName);
     });
+  }
+
+  totalQuantity() {
+    let totalQuantity = 0;
+
+    this.#order.forEach((orderDetails) => {
+      const quantity = orderDetails.quantity;
+      totalQuantity += quantity;
+    });
+
+    return totalQuantity;
   }
 
   calculateTotalAmount() {
