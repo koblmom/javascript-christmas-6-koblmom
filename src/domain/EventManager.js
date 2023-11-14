@@ -68,15 +68,9 @@ class EventManager {
   }
 
   isStarDay(date) {
-    if (
-      date === 3 ||
-      date === 10 ||
-      date === 17 ||
-      date === 24 ||
-      date === 25
-    ) {
-      return 1000;
-    }
+    const starDates = [3, 10, 17, 24, 25];
+
+    return starDates.includes(date) ? 1000 : 0;
   }
 }
 
