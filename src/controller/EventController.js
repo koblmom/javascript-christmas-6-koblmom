@@ -24,6 +24,7 @@ class EventController {
     const orderManager = new OrderManager(orders);
     this.#orderMenus = orderManager.getOrders();
     OutputView.printMenu(this.#orderMenus);
+    Console.print("");
 
     const totalAmounts = orderManager.calculateTotalAmount();
     this.#totalOrder = totalAmounts.reduce((sum, amount) => {
@@ -31,12 +32,14 @@ class EventController {
     }, 0);
 
     OutputView.printTotalOrder(this.#totalOrder);
+    Console.print("");
   }
 
   async handleEvent() {
     const event = new EventManager();
     const freeGift = event.applyFreeGift(this.#totalOrder);
     OutputView.printFree(freeGift);
+    Console.print("");
 
     const discountAmountDay = event.getDiscountAmountDay(
       this.#dayofWeek,
@@ -58,12 +61,14 @@ class EventController {
       (accumulator, currentValue) => accumulator + Number(currentValue),
       0
     );
+    Console.print("");
 
     OutputView.printDiscountAmount(discountAmount);
-
+    Console.print("");
     const DiscountPay = discounts[0] + discounts[1] + discounts[2];
 
     OutputView.printPayAmount(DiscountPay, this.#totalOrder);
+    Console.print("");
     OutputView.printBadge(discountAmount);
   }
 }

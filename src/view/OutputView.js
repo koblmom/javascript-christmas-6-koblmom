@@ -34,6 +34,7 @@ const OutputView = {
   },
 
   printDiscountDetails(discounts) {
+    Console.print("<혜택 내역>");
     const discountLabels = [
       "크리스마스 디데이 할인",
       "평일 할인",
