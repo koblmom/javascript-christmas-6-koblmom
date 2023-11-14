@@ -23,6 +23,9 @@ class EventController {
     const orders = await InputView.readOrder();
     const orderManager = new OrderManager(orders);
     this.#orderMenus = orderManager.getOrders();
+    Console.print(
+      `12월 ${this.#date}일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!\n`
+    );
     OutputView.printMenu(this.#orderMenus);
     Console.print("");
 
