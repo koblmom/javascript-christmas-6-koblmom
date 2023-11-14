@@ -4,7 +4,8 @@ import { ERROR } from "../Constants.js";
 class EventManager {
   applyFreeGift(totalPrice) {
     if (totalPrice > 120000) {
-      return "샴폐인 1개";
+      const freeGiftAmount = Number(25000);
+      return freeGiftAmount;
     } else {
       return "없음";
     }
@@ -41,16 +42,41 @@ class EventManager {
     throw new PrefixError();
   }
 
-  getDiscountAmount(weekIndex, totalOrders) {
+  getDiscountAmountDay(weekIndex, totalOrders) {
     if (this.#isWeekday(weekIndex)) {
       return this.#calculateWeekdayDiscount(totalOrders);
     }
-
     return this.#calculateWeekendDiscount(totalOrders);
   }
 
   #isWeekday(weekIndex) {
     return weekIndex >= 0 && weekIndex <= 4;
+  }
+
+  isChristmasDday(date) {
+    const christmasDate = 25;
+    const currentDate = date;
+
+    if (currentDate <= christmasDate) {
+      const daysUntilChristmas = Math.floor(christmasDate - currentDate);
+
+      const additionalDiscount =
+        1000 + (christmasDate - daysUntilChristmas - 1) * 100;
+      return additionalDiscount;
+    }
+    return 0;
+  }
+
+  isStarDay(date) {
+    if (
+      date === 3 ||
+      date === 10 ||
+      date === 17 ||
+      date === 24 ||
+      date === 25
+    ) {
+      return 1000;
+    }
   }
 }
 
