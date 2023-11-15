@@ -20,4 +20,6 @@ export const ERROR = {
   ORDER_QUANTITY: `유효하지 않은 주문입니다. 다시 입력해 주세요.`,
   UNDER_ORDER_LIMIT: `10,000원 이상 주문해주세요. 다시 입력해 주세요.`,
   TOTAL_QUANTITY_TOO_HIGH: `총 20개이하만 주문가능합니다.  다시 입력해 주세요.`,
+  QUANTITY_NOT_A_NUMBER: `주문형식에 맞춰서 다시 입력해 주세요.`,
+  ORDER_IS_BEVERAGES_ONLY: `음료만 주문하실 수 없습니다. 다시 입력해 주세요.`,
 };

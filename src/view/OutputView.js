@@ -39,7 +39,7 @@ const OutputView = {
     Console.print("<혜택 내역>");
 
     if (totalOrder <= MINIMUMORDER) {
-      console.log("없음");
+      Console.print("없음");
       return;
     }
 
@@ -63,7 +63,7 @@ const OutputView = {
     Console.print("<총혜택 금액>");
 
     if (totalOrder <= MINIMUMORDER) {
-      console.log("없음");
+      Console.print("0원");
       return;
     }
 

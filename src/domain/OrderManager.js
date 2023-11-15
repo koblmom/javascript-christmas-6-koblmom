@@ -47,7 +47,10 @@ class OrderManager {
     const totalQuantity = this.totalQuantity();
 
     orders.forEach((orderDetails) => {
+      const REGEX_NUMERIC = /^\d+$/;
       const menuName = orderDetails.menuType;
+      const quantity = orderDetails.quantity;
+
       if (seenMenuNames.has(menuName)) {
         throw new PrefixError(ERROR.DUPLICATE_MENU);
       }
@@ -58,8 +61,47 @@ class OrderManager {
       if (totalQuantity > 20) {
         throw new PrefixError(ERROR.TOTAL_QUANTITY_TOO_HIGH);
       }
-      seenMenuNames.add(menuName);
+      if (!REGEX_NUMERIC.test(quantity)) {
+        throw new PrefixError(ERROR.QUANTITY_NOT_A_NUMBER);
+      }
     });
+    if (this.isBeveragesOnly(orders)) {
+      throw new PrefixError(ERROR.ORDER_IS_BEVERAGES_ONLY);
+    }
+  }
+
+  checkMenuTypes(order) {
+    const menuTypes = [];
+
+    return order.reduce((prev, curr) => {
+      const receivedMenuTypes = this.findMenuTypes(curr);
+      menuTypes.push(receivedMenuTypes);
+
+      return menuTypes;
+    }, 0);
+  }
+
+  findMenuTypes(order) {
+    const name = order.menuType;
+
+    for (const [menuType, menus] of Object.entries(MENUS)) {
+      const isExist = menus.some((menu) => menu.name === name);
+      if (isExist) {
+        return menuType;
+      }
+    }
+  }
+
+  isBeveragesOnly(orders) {
+    const menuTypes = [...new Set(this.checkMenuTypes(orders))];
+    const expectedMenuTypes = ["APPETIZERS", "MAINS", "DESSERTS"];
+
+    for (const menuType of menuTypes) {
+      if (expectedMenuTypes.includes(menuType)) {
+        return false;
+      }
+    }
+    return true;
   }
 
   totalQuantity() {
