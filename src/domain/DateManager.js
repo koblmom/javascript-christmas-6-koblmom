@@ -3,7 +3,7 @@ import PrefixError from "../prefixError.js";
 
 class DateManager {
   #date;
-  #month = 12;
+  #month = DATE.DEFAULT_MONTH;
 
   constructor(date) {
     this.#validate(date);
@@ -20,8 +20,7 @@ class DateManager {
     }
   }
 
-  getDayofWeek(date) {
-    const daysOfWeek = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+  getDayofWeek() {
     const dayIndex = this.#date.getDay();
     return dayIndex;
   }

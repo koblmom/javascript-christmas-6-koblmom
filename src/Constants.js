@@ -1,12 +1,17 @@
 export const MESSAGE = {
   GET_DATE_INPUT: `12월 중 식당 예상 방문 날짜는 언제인가요? (숫자만 입력해 주세요!)`,
   GET_MENU_INPUT: `주문하실 메뉴를 메뉴와 개수를 알려 주세요.`,
-  GET_PRIVIEW: `12월 3일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!`,
 };
 
 export const DATE = {
   MIN_NUMBER: 1,
   MAX_NUMBER: 31,
+  DEFAULT_MONTH: 12,
+};
+
+export const PRICE = {
+  FREE_GIFT_THRESHOLD: 120000,
+  FREE_GIFT_AMOUNT: 25000,
 };
 
 export const ERROR = {

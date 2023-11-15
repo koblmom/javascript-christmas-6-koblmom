@@ -1,10 +1,10 @@
 import MENUS from "../Menus.js";
-import { ERROR } from "../Constants.js";
+import { PRICE } from "../Constants.js";
 
 class EventManager {
   applyFreeGift(totalPrice) {
-    if (totalPrice > 120000) {
-      const freeGiftAmount = Number(25000);
+    if (totalPrice > PRICE.FREE_GIFT_THRESHOLD) {
+      const freeGiftAmount = PRICE.FREE_GIFT_AMOUNT;
       return freeGiftAmount;
     } else {
       return 0;
@@ -34,7 +34,6 @@ class EventManager {
   #findMenuTypeByName(name) {
     for (const [menuType, menus] of Object.entries(MENUS)) {
       const isExist = menus.some((menu) => menu.name === name);
-
       if (isExist) {
         return menuType;
       }
@@ -69,7 +68,6 @@ class EventManager {
 
   isStarDay(date) {
     const starDates = [3, 10, 17, 24, 25];
-
     return starDates.includes(date) ? 1000 : 0;
   }
 }
